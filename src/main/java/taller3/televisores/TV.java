@@ -1,57 +1,25 @@
 package taller3.televisores;
 
 public class TV {
-	private static int numTV;
-	private int canal = 1;
-	private int precio = 500;
-	private int volumen = 1;
 	private Marca marca;
-	private Control control;
+	private int canal;
+	private int precio;
 	private boolean estado;
+	private int volumen;
+	private Control control;
+	
+	private static int numTV = 0;
 	
 	public TV(Marca marca, boolean estado) {
 		this.marca = marca;
 		this.estado = estado;
-		numTV ++;
+		this.canal = 1;
+		this.volumen = 1;
+		this.precio = 500;
+		TV.numTV += 1;
 	}
 	
-	public void setCanal(int canal) {
-		if(this.estado && (canal >= 1 && canal <= 120)) {
-			this.canal = canal;
-		}
-	}
 	
-	public void setVolumen(int volumen) {
-		if(this.estado && (volumen >=0 && volumen <= 1)) {
-			this.volumen = volumen;
-		}
-		
-	}
-	
-	public void setPrecio(int precio) {
-		this.precio = precio;
-	}
-	
-	public void setMarca(Marca marca) {
-		this.marca = marca;
-	}
-	
-	public void setControl(Control control) {
-		this.control = control;
-	}
-	
-	public int getCanal() {
-		return this.canal;
-	}
-	
-	public int getVolumen() {
-		return this.volumen;
-	}
-	
-	public int getPrecio() {
-		return this.precio;
-		
-	}
 	
 	public Marca getMarca() {
 		return this.marca;
@@ -61,13 +29,55 @@ public class TV {
 		return this.control;
 	}
 	
-	public static void setNumTV(TV numTV_) {
-		numTV = numTV;
+	public int getPrecio() {
+		return this.precio;
+	}
+	
+	public int getVolumen() {
+		return this.volumen;
+	}
+	
+	public int getCanal() {
+		return this.canal;
+	}
+	
+	public boolean getEstado() {
+		return this.estado;
 	}
 	
 	public static int getNumTV() {
-		return numTV;
+		return TV.numTV;
 	}
+	
+	
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+	
+	public void setControl(Control control) {
+		this.control = control;
+	}
+	
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+	
+	public void setVolumen(int volumen) {
+		if(this.estado && volumen >= 0 && volumen <= 7) {
+			this.volumen = volumen;
+		}
+	}
+	
+	public void setCanal(int canal) {
+		if(this.estado && canal >= 1 && canal <= 120) {
+			this.canal = canal;
+		}
+	}
+	
+	static public void setNumTV(int numTV) {
+		TV.numTV = numTV;
+	}
+	
 	
 	public void turnOn() {
 		this.estado = true;
@@ -75,38 +85,29 @@ public class TV {
 	
 	public void turnOff() {
 		this.estado = false;
-		
 	}
 	
-	public boolean getEstado() {
-		return this.estado;
-	}
-	
-	public void canalUp(int canal) {
+	public void canalUp() {
 		if(this.estado && this.canal < 120) {
-			this.canal ++;
+			this.canal += 1;
 		}
 	}
 	
-	public void canalDown(int canal) {
+	public void canalDown() {
 		if(this.estado && this.canal > 1) {
-			this.canal --;
+			this.canal -= 1;
 		}
 	}
 	
-	public void volumenUp(int volumen) {
+	public void volumenUp() {
 		if(this.estado && this.volumen < 7) {
-			this.volumen ++;
+			this.volumen += 1;
 		}
 	}
 	
-	public void volumenDown(int volumen) {
+	public void volumenDown() {
 		if(this.estado && this.volumen > 0) {
-			this.volumen --;
+			this.volumen -= 1;
 		}
 	}
-	
-	public static void contadorTVs(){
-        numTV++;
-
 }
